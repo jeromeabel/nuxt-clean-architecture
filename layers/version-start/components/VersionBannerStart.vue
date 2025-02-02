@@ -21,7 +21,7 @@ onMounted(() => {
     v-if="isVisible"
     class="w-screen py-4 text-center bg-gray-100"
   >
-    New Version {{ version }}
+    (Start) New Version {{ version }}
     <button
       class="rounded bg-black text-white px-2"
       @click="close"
