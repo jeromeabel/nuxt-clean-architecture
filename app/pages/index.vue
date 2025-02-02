@@ -6,7 +6,6 @@
       >
         Nuxt Clean Architecture
       </h1>
-      <NewsletterForm />
     </div>
   </main>
 </template>

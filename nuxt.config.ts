@@ -1,12 +1,10 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
-// console.log('Supabase URL:', process.env.SUPABASE_URL)
-// console.log('Supabase Key:', process.env.SUPABASE_KEY)
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/supabase',
+    // '@nuxtjs/supabase',
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
   ],
