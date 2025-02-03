@@ -18,21 +18,21 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@nuxt/eslint": "^0.6.1",
-    "@nuxtjs/supabase": "^1.4.2",
-    "@nuxtjs/tailwindcss": "^6.12.2",
-    "nuxt": "^3.14.159",
+    "@nuxt/eslint": "^0.6.2",
+    "@nuxtjs/supabase": "^1.4.6",
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "nuxt": "^3.15.4",
     "vue": "latest",
     "vue-router": "latest"
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
   "devDependencies": {
-    "@nuxt/test-utils": "^3.14.4",
-    "@playwright/test": "^1.48.2",
-    "@vitest/ui": "^2.1.4",
+    "@nuxt/test-utils": "^3.15.4",
+    "@playwright/test": "^1.50.1",
+    "@vitest/ui": "^2.1.9",
     "@vue/test-utils": "^2.4.6",
-    "happy-dom": "^15.11.0",
-    "playwright-core": "^1.48.2",
-    "vitest": "^2.1.4"
+    "happy-dom": "^15.11.7",
+    "playwright-core": "^1.50.1",
+    "vitest": "^2.1.9"
   }
 }
