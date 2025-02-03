@@ -1,8 +1,8 @@
 <template>
   <div class="h-screen grid grid-rows-[auto_1fr]">
     <header>
-      <VersionBannerStart />
-      <VersionBannerFinal />
+      <VersionBanner01 />
+      <VersionBanner02 />
     </header>
     <main class="container mx-auto grid items-center place-items-center">
       <div class="w-fit border rounded p-8 shadow-lg">

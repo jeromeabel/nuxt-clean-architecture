@@ -1,3 +1,4 @@
+// @vitest-environment nuxt
 import { describe, it, expect, beforeEach } from 'vitest'
 import { createInMemoryRepository, ERRORS } from '../../repositories/in-memory-newsletter-repository'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
