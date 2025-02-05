@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-const { isVisible, version, close } = useVersion()
+import { useVersion } from '../composables/useVersion'
+
+const { isVisible, version, init, close } = useVersion()
+
+onMounted(() => {
+  init()
+})
 </script>
 
 <template>
