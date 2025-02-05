@@ -1,9 +1,10 @@
-// @vitest-environment nuxt
-import { describe, it, expect } from 'vitest'
+// @vitest-environment happy-dom
+import { describe, it, expect, beforeEach } from 'vitest'
 import { useVersion } from '../composables/useVersion'
-import pkg from '@@/package.json'
+// import pkg from '@@/package.json'
 import type { App } from 'vue'
 import { createApp } from 'vue'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 
 // Utility function from https://alexop.dev/posts/how-to-test-vue-composables/
 function withSetup<T>(composable: () => T): [T, App] {
@@ -19,25 +20,41 @@ function withSetup<T>(composable: () => T): [T, App] {
     return [result as T, app]
   }
 
+const VERSION_KEY = 'app-version'
+const CURRENT_VERSION = '0.0.8'
+const STORED_VERSION = '0.0.7'
+
+// Mock useRuntimeConfig from Nuxt
+mockNuxtImport('useRuntimeConfig', () => {
+   return () => ({
+     public: {
+       version: CURRENT_VERSION,
+     },
+   })
+})
+
 describe('useVersion', () => {
+
+    beforeEach(() => {
+        localStorage.removeItem(VERSION_KEY)
+    })
+
     it('should return correct initial state with withSetup', () => {
         const [result] = withSetup(() => useVersion())
-        expect(result.version).toBe(pkg.version) 
+        expect(result.version).toBe(CURRENT_VERSION) 
         expect(result.isVisible.value).toBe(false) 
     })
 
     describe('should show banner', () => {
         it('when version is not stored', () => {
-            localStorage.removeItem('app-version')
             const [result] = withSetup(() => useVersion())
             result.init()
             
             expect(result.isVisible.value).toBe(true) 
         })
 
-        // localStorage '0.0.1' is different than the '0.0.2' app version
         it('when version differs from localStorage', async () => {
-            localStorage.setItem('app-version', '0.0.1')
+            localStorage.setItem(VERSION_KEY, STORED_VERSION)
             const [result] = withSetup(() => useVersion()) 
             result.init()
 
@@ -46,25 +63,22 @@ describe('useVersion', () => {
     })
 
     describe('should hide banner', () => {
-        // localStorage is equal to '0.0.2' app version
         it('when the same version is stored', () => {
-            localStorage.setItem('app-version', '0.0.2')
+            localStorage.setItem(VERSION_KEY, CURRENT_VERSION)
             const [result] = withSetup(() => useVersion()) 
             result.init()
             
             expect(result.isVisible.value).toBe(false) 
         })
 
-        // store '0.0.2' app version in localStorage
         it('and store version in localStorage on closeBanner', () => {
-            localStorage.setItem('app-version', '0.0.1')
             const [result] = withSetup(() => useVersion())
             result.init()
             
             result.close()
             
             expect(result.isVisible.value).toBe(false) 
-            expect(localStorage.getItem('app-version')).toBe('0.0.2')  
+            expect(localStorage.getItem(VERSION_KEY)).toBe(CURRENT_VERSION)  
         })
     })
 })
