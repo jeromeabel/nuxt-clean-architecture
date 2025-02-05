@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineProps<{
-  isVisible: boolean;
-  version: string;
+  isVisible: boolean,
+  version: string
 }>();
 
 const emit = defineEmits(['close']);
@@ -10,10 +10,10 @@ const emit = defineEmits(['close']);
 <template>
   <div
     v-if="isVisible"
-    class="w-screen py-4 text-center bg-gray-200"
+    class="w-screen py-4 text-center bg-gray-300"
     data-testid="version-banner"
   >
-    (UI) New Version {{ version }}
+    (03) New Version {{ version }}
     <button
       class="rounded bg-black text-white px-2"
       data-testid="version-close"

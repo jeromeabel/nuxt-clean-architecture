@@ -3,6 +3,7 @@
     <header>
       <VersionBanner01 />
       <VersionBanner02 />
+      <VersionBanner03 />
     </header>
     <main class="container mx-auto grid items-center place-items-center">
       <div class="w-fit border rounded p-8 shadow-lg">
