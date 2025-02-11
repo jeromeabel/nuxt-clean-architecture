@@ -7,12 +7,9 @@ export interface IVersionRepository {
 
 export const createInMemoryVersionRepository = (initialVersion: string | undefined): IVersionRepository => {
   let store: string | undefined = undefined
-
-  const getCurrentVersion = () => {
-    console.log('initialVersion', initialVersion)
-    return initialVersion
-  }
-
+  
+  const getCurrentVersion = () => initialVersion
+  
   const getStoredVersion = () => store
 
   const storeVersion = (version: string) => {
@@ -21,6 +18,39 @@ export const createInMemoryVersionRepository = (initialVersion: string | undefin
 
   const clear = () => {
     store = undefined
+  }
+
+  return {
+    getCurrentVersion,
+    getStoredVersion,
+    storeVersion,
+    clear,
+  }
+}
+
+export const createLocalStorageVersionRepository = (): IVersionRepository => {
+
+  const VERSION_KEY = 'app-version'
+  
+  const getCurrentVersion = () => {
+    const version = useRuntimeConfig().public.version
+
+    if (!version) {
+      console.warn('[VersionRepository] No valid current version found in config.')
+      return undefined
+    }
+
+    return version as string
+  }
+
+  const getStoredVersion = () => localStorage.getItem(VERSION_KEY) ?? undefined
+
+  const storeVersion = (version: string) => {
+    localStorage.setItem(VERSION_KEY, version)
+  }
+
+  const clear = () => {
+    localStorage.removeItem(VERSION_KEY)
   }
 
   return {

@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createInMemoryVersionRepository } from '../repositories/version-repository'
+import { createInMemoryVersionRepository } from '../../repositories/version-repository'
 
 const CURRENT_VERSION = '0.0.1'
 const OTHER_VERSION = '0.0.2'

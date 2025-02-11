@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { useVersion } from '../composables/useVersion'
+import { createLocalStorageVersionRepository } from '../repositories/version-repository'
+import VersionBannerUI from './VersionBannerUI.vue'
 
-const { isVisible, version, init, close } = useVersion()
+const repository = createLocalStorageVersionRepository()
+const { isVisible, version, init, close } = useVersion(repository)
 
 onMounted(() => {
   init()

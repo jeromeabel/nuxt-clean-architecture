@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { describe, it, expect, beforeEach } from 'vitest'
 import { shallowMount, VueWrapper } from '@vue/test-utils'
-import VersionBannerUI from '../components/VersionBannerUI.vue'
+import VersionBannerUI from '../../components/VersionBannerUI.vue'
 
 describe("VersionBanner", () => {
 
