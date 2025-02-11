@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+// @vitest-environment nuxt
 import { describe, it, expect, beforeEach } from 'vitest'
 import { useVersion } from '../composables/useVersion'
 // import pkg from '@@/package.json' // We don't need the real value for testing
@@ -22,7 +22,6 @@ function withSetup<T>(composable: () => T): [T, App] {
     app.mount(document.createElement('div')) // Attach to DOM
     return [result as T, app]
   }
-
 
 const VERSION_KEY = 'app-version'
 const CURRENT_VERSION = '0.0.8'
