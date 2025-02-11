@@ -6,10 +6,9 @@ const CURRENT_VERSION = '0.0.1'
 const OTHER_VERSION = '0.0.2'
 
 describe('InMemoryVersionRepository', () => {
-  let repository: ReturnType<typeof createInMemoryVersionRepository>
+  let repository = createInMemoryVersionRepository(CURRENT_VERSION)
 
   beforeEach(() => {
-    repository = createInMemoryVersionRepository(CURRENT_VERSION)
     repository.clear()
   })
 
