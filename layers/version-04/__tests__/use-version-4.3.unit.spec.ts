@@ -24,7 +24,7 @@ function withSetup<T>(composable: () => T): [T, App] {
 
 describe('useVersion', () => {
 
-    // Issue with onMounted
+    // Issue with onMounted (= skipped)
     // onMounted is called before the test (in the setup()), so we don't have the state false before onMounted
     it.skip('should return correct initial state with withSetup', () => {
         const [result] = withSetup(() => useVersion())

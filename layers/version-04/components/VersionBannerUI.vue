@@ -13,7 +13,7 @@ const emit = defineEmits(['close']);
     class="w-screen py-4 text-center bg-gray-300"
     data-testid="version-banner"
   >
-    (03) New Version {{ version }}
+    (04) New Version {{ version }}
     <button
       class="rounded bg-black text-white px-2"
       data-testid="version-close"
