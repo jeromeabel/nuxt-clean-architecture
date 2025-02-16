@@ -1,17 +1,5 @@
----
-tags:
-  - types/resource
-created: 2025-02-14
-modified: 2025-02-15, 15:57
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 6/10: Avoid Mocks With the "Component Wrapper" Pattern (v3)
+
 ## Refactor to a Component Wrapper
 
 What if we make the component **dumber** by exposing only an API through props and events? A parent component (the **wrapper**) can then inject the composable as a dependency provider. This approach:

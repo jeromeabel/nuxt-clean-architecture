@@ -1,26 +1,13 @@
----
-modified: 2025-02-15, 15:52
-tags:
-  - types/resource
-created: 2025-02-12
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 4/10: Test the component (v2-1)
 
 Code: [version-banner-2-1.unit.spec.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-02/__tests__/version-banner-2-1.unit.spec.ts)
 
 ## Initial Tests
 
 We'll start by implementing two types of tests:
+
 - The banner should be hidden by default.
 - The banner should be displayed when no version is stored.
-
 
 ```ts
 // File: layers/version-02/__tests__/version-banner.spec.ts
@@ -59,10 +46,9 @@ describe('VersionBanner', () => {
 ### Test Failures
 
 The tests currently fail with these errors:
-```
+
 - AssertionError: expected false to be true
 - AssertionError: expected '' to contain '0.0.2'
-```
 
 ### Why the Tests Fail?
 
@@ -71,6 +57,7 @@ The failures occur because the `<div>` controlled by `v-if="isVisible"` does not
 To diagnose this issue, you can inspect the rendered HTML with `console.log(wrapper.html())`. The solution is to wait for the DOM to update using `nextTick()` before making assertions.
 
 For example:
+
 ```ts
 it('should display the version', async () => {
   const wrapper = mount(VersionBanner);
@@ -144,10 +131,11 @@ describe('VersionBanner', () => {
 
 Although all tests now pass, there’s an underlying issue: testing this UI component has become somewhat ambiguous. You might already know that there are two main types of component tests:
 
-- **Small Component Tests (CTIS):** These are unit tests that focus solely on the component in isolation.
-- **Large Component Tests (CTIL):** These are integration tests that evaluate the interactions between the component and its dependencies.
+- **Component Test In Small (CTIS):** These are unit tests that focus solely on the component in isolation.
+- **Component Test In Large (CTIL):** These are integration tests that evaluate the interactions between the component and its dependencies.
 
 In our case, the tests are leaning towards the integration side (CTIL) because they rely on several internal aspects of the composable:
+
 - The Nuxt environment, as the composable uses `useRuntimeConfig()`.
 - The `onMounted` lifecycle hook that updates the UI.
 - The usage of `localStorage` to manage state.
@@ -158,6 +146,7 @@ This means that rather than testing only the UI component, our tests are also va
 ## Next Step
 
 Looking ahead, here are three potential approaches to improve our testing strategy:
+
 1. **Move the `onMounted` Hook Out of the Composable:**  
     This would simplify the test by making the UI update logic more explicit within the component.
 2. **Mock the `useVersion()` Composable:**  

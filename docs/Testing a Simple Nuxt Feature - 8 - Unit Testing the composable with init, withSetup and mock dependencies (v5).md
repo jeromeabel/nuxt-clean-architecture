@@ -1,17 +1,4 @@
----
-modified: 2025-02-15, 16:10
-tags:
-  - types/resource
-created: 2025-02-14
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 8/10: Unit Testing the Composable
 
 ## Refactor: Replace onMounted with an "init" Method in the Composable
 
@@ -148,7 +135,6 @@ _Note:_ This is still an integration test because it relies on localStorage.
 ---
 
 ## Mocking localStorage (v5-2)
-
 
 Code: [use-version-5-2.unit.spec.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-05/__tests__/use-version-5-2.unit.spec.ts)
 

@@ -1,17 +1,4 @@
----
-tags:
-  - types/resource
-created: 2025-02-12
-modified: 2025-02-15, 15:48
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 2/10: All-In-One Components (v1)
 
 Code: [VersionBanner01.vue](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-01/components/VersionBanner01.vue)
 
@@ -47,9 +34,10 @@ onMounted(() => {
 
 ## Issues with this Implementation
 
-- **Too many concerns:** The component handles state, lifecycle hooks, business logic, and UI.
-- **Difficult to test:** Testing requires mocking `useRuntimeConfig`, `localStorage`, and handling `onMounted()`.
-- **Implicit Type Assumption**: There's no explicit type check or validation. If `version` is `undefined` or an unexpected type, it could cause unintended behavior.
+- **Difficult to test:**
+  - **Too many concerns:** The component handles state, lifecycle hooks (`onMounted()`), business logic, dependencies ( `useRuntimeConfig`, `localStorage`), and UI.
+  - **Implicit Type Assumption**: There's no explicit type check or validation. If `version` is `undefined` or an unexpected type, it could cause unintended behavior.
 
 ## Next Step
-What are your thoughts on this implementation? Does this structure seem sufficient, or do you see areas for improvement? 
+
+What are your thoughts on this implementation? Does this structure seem sufficient, or do you see areas for improvement?

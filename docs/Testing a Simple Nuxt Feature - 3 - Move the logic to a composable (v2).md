@@ -1,23 +1,10 @@
----
-tags:
-  - types/resource
-created: 2025-02-12
-modified: 2025-02-15, 15:50
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
-## Version 2: Extracting Logic into a Composable
-_(Presenter/Humble Component Pattern)_
+# Part 3/10: Extracting Logic into a Composable (v2)
+
+(Presenter/Humble Component Pattern)
 
 In this first refactoring, we extract the business logic into a composable (Presenter), leaving the component to solely handle UI rendering (Humble).
 
-### Composable (Presenter)
+## Composable (Presenter)
 
 Code: [useVersion.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-02/composables/useVersion.ts)
 ```ts
@@ -42,7 +29,7 @@ export const useVersion = () => {
 };
 ```
 
-### Component (Humble/Dumb)
+## Component (Humble or Dumb)
 
 Code: [VersionBanner02.vue](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-02/components/VersionBanner02.vue)
 

@@ -1,22 +1,8 @@
----
-modified: 2025-02-15, 15:54
-tags:
-  - types/resource
-created: 2025-02-14
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 5/10: Mocking the composable (v2-2 & v2-3)
+
 As we saw earlier, mocking the composable helps us isolate the component test without relying on Nuxt's real interactions or localStorage behavior.
 
 ## Component Reminder: VersionBanner02.vue
-
-
 
 ```vue
 <script lang="ts" setup>

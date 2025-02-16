@@ -1,17 +1,5 @@
----
-tags:
-  - types/resource
-created: 2025-02-14
-modified: 2025-02-15, 16:07
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 7/10: Test the composable (v4)
+
 ## First Test (v4-1)
 
 Code: [use-version-4-1.unit.spec.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-04/__tests__/use-version-4-1.unit.spec.ts)
@@ -34,10 +22,12 @@ describe('useVersion', () => {
 ```
 
 There are two issues ("code smells") with this test:
+
 - **Nuxt Dependency:** The test requires the Nuxt environment because the composable uses `useRuntimeConfig` from Nuxt. This makes it more of an integration test, but we can set that aside for now.
 - **onMounted Warning:** The warning indicates that `onMounted` is being called without an active component instance. For proper execution, the composable should be wrapped inside a component.
 
 Let's focus on the second issue. We have two options:
+
 1. **Move `onMounted` to the wrapper component.**
 2. **Create a Vue app to test the composable.**
 

@@ -1,22 +1,8 @@
----
-tags:
-  - types/resource
-created: 2025-02-14
-modified: 2025-02-15, 16:22
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 9/10: Move Dependencies to a Repository
+
 ## Refactor to Avoid Real Dependencies
 
 Instead of directly using external dependencies, we can define an API (or interface) that describes what we need. This lets us focus on business logic inside the composable while handling I/O externally.
-
----
 
 ## Repository Interface
 
@@ -85,8 +71,6 @@ This refactoring improves our code by:
 - Allowing TypeScript to warn us if we try to store an undefined version
 - Removing implementation details about how versions are obtained or stored
 
----
-
 ## In-Memory Repository
 
 Code: [version-repository.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-06/repositories/version-repository.ts)
@@ -122,8 +106,6 @@ export const createInMemoryVersionRepository = (initialVersion: string | undefin
   }
 }
 ```
-
----
 
 ## Testing the Composable with the In-Memory Repository
 
@@ -189,13 +171,9 @@ describe('useVersion', () => {
 _Observation:_  
 The tests are now straightforward. They focus on the behavior of the composable rather than its underlying implementation.
 
----
-
 ## Dealing with Real Dependencies
 
 While the in-memory repository simplifies unit testing, real applications require handling external dependencies. By leveraging dependency injection via `IVersionRepository`, we can easily swap implementations between tests and production. Next, let’s see how we test the repository itself and implement the real version.
-
----
 
 ## Testing the In Memory Repository
 
@@ -245,8 +223,6 @@ describe('InMemoryVersionRepository', () => {
 })
 ```
 
----
-
 ## Implementation Repository: Real Version
 
 Implement the real repository that uses Nuxt’s runtime configuration and localStorage:
@@ -284,8 +260,6 @@ export const createLocalStorageVersionRepository = (): IVersionRepository => {
 }
 ```
 
----
-
 ## Refactor the Wrapper Component
 
 Now update the wrapper component to use the real repository:
@@ -314,8 +288,6 @@ onMounted(() => {
   />
 </template>
 ```
-
----
 
 ## Conclusion
 
