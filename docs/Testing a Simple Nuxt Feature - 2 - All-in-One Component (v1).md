@@ -48,39 +48,39 @@ What are your thoughts on this implementation? Does this structure seem sufficie
 graph TB;
 
     %% Start %%
-    A((fa:fa-flag-checkered Start Feature:<br> <b>Version Banner</b>))
+    A((🏁 Start Feature:<br> <b>Version Banner</b>))
 
     %% Specs v1 Checklist %%
-    B[fa:fa-list Specifications v1]
+    B[📋 Specifications v1]
 
     %% Development Process %%
-    C[fa:fa-code All-In-One Component]
-    D{{fa:fa-eye Test: Visual Testing}}
+    C[👨‍💻 All-In-One Component]
+    D{{👁️ Test: Visual Testing}}
     E{Enough Confidence?}
-    F((fa:fa-door-open Exit))
+    F((👋 Exit))
 
     %% Issues %%
-    G[fa:fa-triangle-exclamation Difficult to Test]
-    G1[fa:fa-triangle-exclamation <b>Type Assumptions</b>]
-    G2[fa:fa-triangle-exclamation <b>Too Many Concerns</b>:<br>UI, State, Lifecycle, Dependencies]
+    G[⚠️ Difficult to Test]
+    G1[⚠️ <b>Type Assumptions</b>]
+    G2[⚠️ <b>Too Many Concerns</b>:<br>UI, State, Lifecycle, Dependencies]
 
     %% Specs v2 Checklist %%
-    H1["fa:fa-bullseye Version Handling ➜ Entity & Validation"]
-    H2["fa:fa-bullseye Component ➜ UI Only"]
-    I[fa:fa-list Specifications v2]
+    H1["🎯 Version Handling ➜ Entity & Validation"]
+    H2["🎯 Component ➜ UI Only"]
+    I[📋 Specifications v2]
 
     J((v2))
 
     %% Connections %%
-    A --> |"[ fa:fa-compass Guided By YAGNI ]"| B
+    A --> |"★ Guided By YAGNI"| B
     B --> |First Implementation| C
     C --> D
     D --> E
     E --> |Yes| F
     E --> |No| G
 
-    G -->|"[ fa:fa-compass Guided By Primitive Obsession ]"| G1
-    G -->|"[ fa:fa-compass Guided By SRP ]"| G2
+    G -->|"★ Guided By Primitive Obsession"| G1
+    G -->|"★ Guided By SRP"| G2
     G1 --> H1
     G2 --> H2
     H1 --> I
