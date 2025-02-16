@@ -31,7 +31,7 @@ As I reflect on my decision-making process, I realize I follow certain principle
 
 Some decisions might seem like over-engineering. Balancing pragmatism and perfectionism is tricky. A useful criterion is asking, *What value does this decision bring?* The value I seek is confidence—I want to build confidence in my code.
 
-## Feature Overview
+## Feature Overview: Specifications v1
 
 We will implement a version banner in a Nuxt application:
 
