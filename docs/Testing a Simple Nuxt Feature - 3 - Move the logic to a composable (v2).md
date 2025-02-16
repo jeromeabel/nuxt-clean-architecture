@@ -7,6 +7,7 @@ In this first refactoring, we extract the business logic into a composable (Pres
 ## Composable (Presenter)
 
 Code: [useVersion.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-02/composables/useVersion.ts)
+
 ```ts
 // File: layers/version-02/composables/useVersion.ts
 export const useVersion = () => {

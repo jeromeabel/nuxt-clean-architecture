@@ -13,7 +13,6 @@ Define an interface that abstracts the operations we need. Rather than directly 
 - **getStoredVersion()** instead of `localStorage.getItem()`
 - **clear()** instead of `localStorage.removeItem()`
 
-
 Code: [version-repository.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-06/repositories/version-repository.ts)
 
 ```ts

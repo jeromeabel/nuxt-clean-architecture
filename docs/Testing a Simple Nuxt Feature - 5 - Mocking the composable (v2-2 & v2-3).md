@@ -80,7 +80,6 @@ Now, we refactor the test to eliminate redundancy and add mocks for the function
 
 > **Note:** The expectations have changed. We are not testing the logic that compares localStorage with package.json—this logic should be covered in tests dedicated to the composable. Here, we focus on verifying that the component correctly connects to the composable, handles UI conditional rendering, and displays the proper HTML.
 
-
 Code: [version-banner-2-3.unit.spec.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-02/__tests__/version-banner-2-3.unit.spec.ts)
 
 ```ts
@@ -150,7 +149,6 @@ In these tests, we're verifying that:
 - Conditional rendering works based on the `isVisible` flag.
 - The close button is present and triggers the `close` function.
 
-
 ## Benefits
 
 By refactoring, we have improved the test structure in several ways:
@@ -163,16 +161,18 @@ By refactoring, we have improved the test structure in several ways:
 ## The Problem With Mocking Composables
 
 There is a downside to this approach:
+
 - We must know too many internal details about the composable:
-    - Its import path.
-    - Its function signature.
-    - Its internal shape, such as `isVisible` being a `ref`.
+  - Its import path.
+  - Its function signature.
+  - Its internal shape, such as `isVisible` being a `ref`.
 - This approach **couples the test to implementation details**, making future refactors more challenging.
 - It also shifts focus away from the component's primary responsibility: rendering the UI and responding to user interactions.
 
 ## Should We Avoid Mocks?
 
 There’s an ongoing debate in testing:
+
 - **White-box (Structural) Testing:** Using mocks isolates the component but increases coupling.
 - **Black-box (Behavioral) Testing:** Avoids mocks and focuses only on the component’s public API (props/events), resulting in more robust but sometimes more verbose tests.
 
