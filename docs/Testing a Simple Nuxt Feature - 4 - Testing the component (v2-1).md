@@ -175,7 +175,7 @@ Let's add the new specifications to have a better design:
 ## Decision Map
 
 ```mermaid
-graph TB;
+graph TB
 
     %% Start
     A((🏁 Start v2.1:<br><b>Version Banner</b>)):::start
