@@ -237,4 +237,4 @@ graph TB
     classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
     classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
     classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000
-    ```
+```
