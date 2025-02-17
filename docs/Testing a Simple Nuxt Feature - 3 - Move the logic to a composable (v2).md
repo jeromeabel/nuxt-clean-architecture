@@ -1,4 +1,4 @@
-# Part 3/10: Extracting Logic into a Composable (v2)
+# Part 3/10: Extracting Logic into a Composable (v2.1)
 
 (Presenter/Humble Component Pattern)
 

@@ -22,12 +22,13 @@ As I reflect on my decision-making process, I realize I follow certain principle
 
 - **YAGNI (You Aren’t Gonna Need It)** – Build just enough without over-planning.
 - **Domain Primitive** pattern, sometimes also called **Primitive Obsession** (when referring to the anti-pattern it solves).
+- **Separation of Concern (SoC)**.
 - **Single Responsibility Principle (SRP)** – Separate concerns to maintain clarity.
-- **Test input and output, not implementation details.**
-- **Avoid mocks when possible.**
+- **Test input and output, not implementation details**.
+- **Avoid mocks when possible**.
 - **Minimize tight coupling** – using Dependency Injection (DIP).
-- **Avoid magic values.**
-- **Iterate in small steps.**
+- **Avoid magic values**.
+- **Iterate in small steps**.
 
 Some decisions might seem like over-engineering. Balancing pragmatism and perfectionism is tricky. A useful criterion is asking, *What value does this decision bring?* The value I seek is confidence—I want to build confidence in my code.
 

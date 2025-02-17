@@ -139,7 +139,7 @@ In our case, the tests are leaning towards the integration side (CTIL) because t
 - The Nuxt environment, as the composable uses `useRuntimeConfig()`.
 - The `onMounted` lifecycle hook that updates the UI.
 - The usage of `localStorage` to manage state.
-- The specific `"app-version"` key used within the composable.
+- The hardcoded `"app-version"` key used within the composable.
 
 This means that rather than testing only the UI component, our tests are also validating the interactions between the component, the composable, and external dependencies like `useRuntimeConfig()` and `localStorage`.
 
@@ -147,13 +147,94 @@ This means that rather than testing only the UI component, our tests are also va
 
 Looking ahead, here are three potential approaches to improve our testing strategy:
 
-1. **Move the `onMounted` Hook Out of the Composable:**  
+1. **Move the `onMounted` Hook Out of the Composable:** (optional)
     This would simplify the test by making the UI update logic more explicit within the component.
-2. **Mock the `useVersion()` Composable:**  
+2. **Mock the `useVersion()` Composable:**
     By mocking the composable, you can create a true unit test for the component that doesn’t depend on the composable’s implementation details.
-3. **Refactor the Component to Accept Props:**  
+3. **Refactor the Component to Accept Only Props & Events:**
     Instead of directly relying on the composable, passing data as props could decouple the component from its dependencies. This approach is appealing, but further exploration is needed to fully understand its benefits.
 
 It’s similar to a choose-your-own-adventure story: deciding the next step depends on the challenges ahead. In this context, a common next move would be to convert this integration test into a true unit test by mocking the composable.
 
 Which path will you take?
+
+## Specifications v2.2
+
+Let's add the new specifications to have a better design:
+
+- (v1) The application’s version is defined in `package.json`.
+- (v1) The component displays the current version.
+- (v1) The banner remains hidden if the version is already stored in local storage.
+- (v1) The user can dismiss the banner.
+- (v2.1) The component should only care about the UI behavior + v(2.2) only Props & Events
+- (v2.1) The Version should be wrapped in an Entity
+- (v2.2) Mock the `useVersion()` Composable
+- (v2.2) Test the composable
+- (v2.2) Move `onMounted` (optional)
+
+## Decision Map
+
+```mermaid
+graph TB;
+
+    %% Start
+    A((🏁 Start v2.1:<br><b>Version Banner</b>)):::start
+
+    %% Specs v2 Checklist
+    B[📋 Specifications v2.1]:::start
+
+    %% Development Process
+    C2["👨‍💻 Component (Humble)"]
+    C1["👨‍💻 Composable (Presenter)"]
+
+    D{{👁️ Test: Visual}}
+    E{Enough Confidence?}:::decision
+    F((👋 Exit)):::exit
+
+    %% Test
+    G{{🧪 Test: Automatic}}
+
+    %% Issues
+    H[⚠️ Integration Test]:::issue
+    I{Enough Confidence?}:::decision
+
+    J[⚠️ Issues]:::issue
+    K1["⚠️ <b>Dependencies:</b><br>useRuntimeConfig & localStorage"]:::issue
+    K2["⚠️ <b>Hardcoded:</b> 'app-version'"]:::issue
+    K3[⚠️ <b>Lifecycle:</b> onMounted]:::issue
+
+    L1[🎯 Mock the comosable]:::action
+    L2[🎯 Test the composable]:::action
+    L3[🎯 Move onMounted]:::action
+
+    M[📋 Specifications v2.2]
+    N((v2.2))
+
+    %% Connections
+    A --> B
+    B --> | Refactor | C2
+    B --> | Refactor: Extract Logic | C1
+    C1 & C2 --> D
+    D --> E
+    E --> |Yes| F
+    E --> |No| G
+    %%G --- |"Refactor: add nextTick"| G
+    G --- H
+    H --- I
+    I --- |yes| F
+    I --- |no| J --- K1 & K2 & K3
+    K1 --- |"★ Guided By SRP & <br>Don't test implementation details"|L1
+    K2 --- |★ Guided By SRP & <br>Avoid magic values|L2
+    K3 --- |"★ Guided By Make the test simpler"|L3
+    L1 & L2 --- M
+    L3 -.- |optional|M
+    M --- N
+
+    %% Define Styles %%
+    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
+    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
+    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
+    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
+    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
+    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000
+    ```

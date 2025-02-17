@@ -10,7 +10,7 @@ Code: [VersionBanner01.vue](https://github.com/jeromeabel/nuxt-clean-architectur
 const VERSION_KEY = 'app-version';
 const isVisible = ref(false);
 // INFOS: useRuntimeConfig() retrieve variables from the config file nuxt.config.ts
-const version = useRuntimeConfig().public.version; 
+const version = useRuntimeConfig().public.version;
 
 const close = () => {
   isVisible.value = false;
@@ -38,16 +38,16 @@ onMounted(() => {
   - **Too many concerns:** The component handles state, lifecycle hooks (`onMounted()`), business logic, dependencies ( `useRuntimeConfig`, `localStorage`), and UI.
   - **Implicit Type Assumption**: There's no explicit type check or validation. If `version` is `undefined` or an unexpected type, it could cause unintended behavior.
 
-## Specifications v2
+## Specifications v2.1
 
-Let'add the new specifications to have a better design:
+Let's add the new specifications to have a better design:
 
 - (v1) The application’s version is defined in `package.json`.
 - (v1) The component displays the current version.
 - (v1) The banner remains hidden if the version is already stored in local storage.
 - (v1) The user can dismiss the banner.
-- (v2) The component should only care about the UI behavior
-- (v2) The Version should be wrapped in an Entity
+- (v2.1) The component should only care about the UI behavior
+- (v2.1) The Version should be wrapped in an Entity
 
 ## Next Step
 
@@ -78,9 +78,9 @@ graph TB;
     %% Specs v2 Checklist %%
     H1["🎯 Version Handling ➜ Entity & Validation"]
     H2["🎯 Component ➜ UI Only"]
-    I[📋 Specifications v2]
+    I[📋 Specifications v2.1]
 
-    J((v2))
+    J((v2.1))
 
     %% Connections %%
     A --> |"★ Guided By YAGNI"| B
@@ -91,7 +91,7 @@ graph TB;
     E --> |No| G
 
     G -->|"★ Guided By Primitive Obsession"| G1
-    G -->|"★ Guided By SRP"| G2
+    G -->|"★ Guided By Separation of Concerns (SoC)"| G2
     G1 --> H1
     G2 --> H2
     H1 --> I
@@ -105,7 +105,7 @@ graph TB;
     classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
     classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
     classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000;
-    
+
     class A start;
     class F exit;
     class E decision;
