@@ -28,7 +28,7 @@ const { isVisible, version, close } = useVersion()
 </template>
 ```
 
-## Dumb UI Component
+## Dumb & Dumber UI Component
 
 Code: [VersionBannerUI.vue](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-03/components/VersionBannerUI.vue)
 
@@ -81,7 +81,7 @@ describe("VersionBannerUI", () => {
   beforeEach(() => {
     wrapper = createWrapper()
   })
-  
+
   // Helper selectors.
   const getBanner = () => wrapper.find('[data-testid="version-banner"]')
   const getCloseButton = () => wrapper.find('[data-testid="version-close"]')
@@ -120,3 +120,61 @@ With this approach, we've simplified component testing by isolating the UI compo
 ## Next Step
 
 The journey isn’t over yet. Now that the component no longer depends directly on the composable, we can focus on specifying and testing the composable itself. What should we explore next?
+
+## Specifications v4
+
+- (v1) The application’s version is defined in `package.json`.
+- [x] (v1) The component displays the current version.
+- [x] (v1) The banner remains hidden if the version is already stored in local storage.
+- [x] (v1) The user can dismiss the banner.
+- [x] (v2.1) The component should only care about the UI behavior + v(2.2) only Props & Events
+- (v2.1) The version should be wrapped in an Entity
+- [x] (v2.2) The banner should be hidden by default.
+- [x] (v2.2) The banner should be displayed when no version is stored.
+- [x] (v2.2) Mock the `useVersion()` Composable to isolate the component under test (CUT)
+- (v2.2) Test the composable
+- (v2.2) Move `onMounted` (optional)
+
+## Decision Map
+
+```mermaid
+graph TB
+
+    %% Start
+    A((🏁 Start v3)):::start
+
+    %% Specification v3 Checklist
+    B[📋 Specification v3]:::start
+
+    %% Development Process
+    C1["👨‍💻 Wrapper Component: VersionBanner03.vue"]
+    C2["👨‍💻 Child Component: VersionBannerUI.vue"]
+
+    %% Test
+    D{{🧪 Automated Test}}
+
+    E[✅ Specification Validated]
+    F[🎉 100% Confidence! 🎉]
+
+    G{Is Testing Sufficient?}:::decision
+    H((👋 Exit)):::exit
+    I[🎯 The composable should be tested]:::action
+    J((v4))
+
+    %% Connections
+    A --> B
+    B --> | Refactor: Extract Components | C1 & C2
+    C2 --> | Refactor: Remove Mocks | D
+    D --- E --- F --- G
+    G --- |Yes| H
+    G --- |No| I
+    I --- J
+
+    %% Define Styles %%
+    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
+    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
+    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
+    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
+    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
+    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000
+```

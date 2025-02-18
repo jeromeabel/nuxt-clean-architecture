@@ -186,6 +186,20 @@ To simplify the tests further, we might consider completely isolating the compon
 
 What do you think? Should we continue refining our testing strategy further?
 
+## Specifications v3
+
+- (v1) The application’s version is defined in `package.json`.
+- (v1) The component displays the current version.
+- (v1) The banner remains hidden if the version is already stored in local storage.
+- (v1) The user can dismiss the banner.
+- (v2.1) The component should only care about the UI behavior + v(2.2) only Props & Events
+- (v2.1) The version should be wrapped in an Entity
+- (v2.2) The banner should be hidden by default.
+- (v2.2) The banner should be displayed when no version is stored.
+- [x] (v2.2) Mock the `useVersion()` Composable to isolate the component under test (CUT)
+- (v2.2) Test the composable
+- (v2.2) Move `onMounted` (optional)
+
 ## Decision Map
 
 ```mermaid
@@ -211,9 +225,9 @@ graph TB
     H[⚠️ The component is tightly coupled to the composable]:::issue
     I[🎯 The component should expose only props and events]:::action
 
-    J[📋 Specification v2.3]
-    K((v2.3))
-
+    J[📋 Specification v3]
+    K((v3))
+w
     %% Connections
     A --> B
     B --> | Refactor: add data-testid | C
