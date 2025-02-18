@@ -21,6 +21,7 @@ I will progress from the outside in, starting with the UI, as that was the natur
 As I reflect on my decision-making process, I realize I follow certain principles. Here are some that will guide me:
 
 - **YAGNI (You Aren’t Gonna Need It)** – Build just enough without over-planning.
+- **DRY (Don't Repeat Yoursel)**.
 - **Domain Primitive** pattern, sometimes also called **Primitive Obsession** (when referring to the anti-pattern it solves).
 - **Separation of Concern (SoC)**.
 - **Single Responsibility Principle (SRP)** – Separate concerns to maintain clarity.

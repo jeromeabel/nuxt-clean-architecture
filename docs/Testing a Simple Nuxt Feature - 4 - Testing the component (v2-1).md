@@ -167,8 +167,10 @@ Let's add the new specifications to have a better design:
 - (v1) The banner remains hidden if the version is already stored in local storage.
 - (v1) The user can dismiss the banner.
 - (v2.1) The component should only care about the UI behavior + v(2.2) only Props & Events
-- (v2.1) The Version should be wrapped in an Entity
-- (v2.2) Mock the `useVersion()` Composable
+- (v2.1) The version should be wrapped in an Entity
+- (v2.2) The banner should be hidden by default.
+- (v2.2) The banner should be displayed when no version is stored.
+- (v2.2) Mock the `useVersion()` Composable to isolate the component under test (CUT)
 - (v2.2) Test the composable
 - (v2.2) Move `onMounted` (optional)
 
@@ -178,36 +180,36 @@ Let's add the new specifications to have a better design:
 graph TB
 
     %% Start
-    A((🏁 Start v2.1:<br><b>Version Banner</b>)):::start
+    A((🏁 Start v2.1>)):::start
 
-    %% Specs v2 Checklist
-    B[📋 Specifications v2.1]:::start
+    %% Spec v2 Checklist
+    B[📋 Specification v2.1]:::start
 
     %% Development Process
     C2["👨‍💻 Component (Humble)"]
     C1["👨‍💻 Composable (Presenter)"]
 
-    D{{👁️ Test: Visual}}
-    E{Enough Confidence?}:::decision
+    D{{🧪👁️ Visual Test}}
+    E{Confidence Enough?}:::decision
     F((👋 Exit)):::exit
 
     %% Test
-    G{{🧪 Test: Automatic}}
+    G{{🧪 Automated Test}}
 
     %% Issues
     H[⚠️ Integration Test]:::issue
-    I{Enough Confidence?}:::decision
+    I{Confidence Enough?}:::decision
 
     J[⚠️ Issues]:::issue
     K1["⚠️ <b>Dependencies:</b><br>useRuntimeConfig & localStorage"]:::issue
     K2["⚠️ <b>Hardcoded:</b> 'app-version'"]:::issue
-    K3[⚠️ <b>Lifecycle:</b> onMounted]:::issue
+    K3["⚠️ <b>Lifecycle:</b> onMounted"]:::issue
 
     L1[🎯 Mock the comosable]:::action
     L2[🎯 Test the composable]:::action
     L3[🎯 Move onMounted]:::action
 
-    M[📋 Specifications v2.2]
+    M[📋 Specification v2.2]
     N((v2.2))
 
     %% Connections

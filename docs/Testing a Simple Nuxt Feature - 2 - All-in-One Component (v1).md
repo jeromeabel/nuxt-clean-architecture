@@ -61,13 +61,13 @@ graph TB;
     %% Start %%
     A((🏁 Start Feature:<br> <b>Version Banner</b>))
 
-    %% Specs v1 Checklist %%
-    B[📋 Specifications v1]
+    %% Spec v1 Checklist %%
+    B[📋 Specification v1]
 
     %% Development Process %%
     C[👨‍💻 All-In-One Component]
-    D{{👁️ Test: Visual Testing}}
-    E{Enough Confidence?}
+    D{{🧪👁️ Visual Testing}}
+    E{Confidence Enough?}
     F((👋 Exit))
 
     %% Issues %%
@@ -75,10 +75,10 @@ graph TB;
     G1[⚠️ <b>Type Assumptions</b>]
     G2[⚠️ <b>Too Many Concerns</b>:<br>UI, State, Lifecycle, Dependencies]
 
-    %% Specs v2 Checklist %%
+    %% Spec v2 Checklist %%
     H1["🎯 Version Handling ➜ Entity & Validation"]
     H2["🎯 Component ➜ UI Only"]
-    I[📋 Specifications v2.1]
+    I[📋 Specification v2.1]
 
     J((v2.1))
 

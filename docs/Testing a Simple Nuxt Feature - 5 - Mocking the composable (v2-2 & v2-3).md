@@ -1,8 +1,10 @@
 # Part 5/10: Mocking the composable (v2-2 & v2-3)
 
-As we saw earlier, mocking the composable helps us isolate the component test without relying on Nuxt's real interactions or localStorage behavior.
+As we saw earlier, we gonnna mock the composable. It will help us isolate the component test without relying on Nuxt's real interactions or localStorage behavior.
 
 ## Component Reminder: VersionBanner02.vue
+
+Code: [VersionBanner02.vue](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-02/components/VersionBanner02.vue)
 
 ```vue
 <script lang="ts" setup>
@@ -33,12 +35,12 @@ import { shallowMount } from '@vue/test-utils'
 import VersionBanner02 from '../components/VersionBanner02.vue'
 
 // Mock the useVersion module.
-vi.mock('../composables/useVersion', () => ({ 
+vi.mock('../composables/useVersion', () => ({
   useVersion: () => ({
     isVisible: true, // Forces the banner to display and pass the test.
     version: '0.0.1',
     close: () => {},
-  }) 
+  })
 }))
 
 describe("VersionBanner", () => {
@@ -49,7 +51,7 @@ describe("VersionBanner", () => {
 })
 ```
 
-**Note:**  
+**Note:**
 The `vi.mock` function instructs Vitest to mock the `../composables/useVersion` module. Vitest intercepts the import and replaces the real module with our mock version.
 
 ## Benefits of This Approach
@@ -130,7 +132,7 @@ describe("VersionBanner", () => {
       ...mockVersionData,
       isVisible: ref(false),
     })
-    
+
     wrapper = shallowMount(VersionBanner02)
     expect(getBanner().exists()).toBe(false)
   })
@@ -183,3 +185,52 @@ For example, checking that `mockVersionData.close` has been called is a white-bo
 To simplify the tests further, we might consider completely isolating the component from the composable by wrapping it in a parent component. This change would help focus tests solely on the component's behavior rather than the inner workings of its dependencies.
 
 What do you think? Should we continue refining our testing strategy further?
+
+## Decision Map
+
+```mermaid
+graph TB
+
+    %% Start
+    A((🏁 Start v2.2)):::start
+
+    %% Specification v2 Checklist
+    B[📋 Specification v2.2]:::start
+
+    %% Development Process
+    C["👨‍💻 Component: VersionBanner02.vue"]
+
+        %% Test
+    D{{🧪 Automated Test}}
+
+    E[✅ Isolated Unit Test]
+    F{Confident Enough?}:::decision
+    G((👋 Exit)):::exit
+
+    %% Issues
+    H[⚠️ The component is tightly coupled to the composable]:::issue
+    I[🎯 The component should expose only props and events]:::action
+
+    J[📋 Specification v2.3]
+    K((v2.3))
+
+    %% Connections
+    A --> B
+    B --> | Refactor: add data-testid | C
+    C --> | Mock the composable | D
+    C --- | Refactor: Follow DRY Principle| D
+    D --> E
+    E --- F
+    F --> |Yes, white-box testing is OK| G
+    F --> |No, I prefer black-box testing| H
+    H --> |Guided by 'Don't test internal details' and 'Minimize coupling'| I
+    I --- J --- K
+
+    %% Define Styles %%
+    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
+    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
+    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
+    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
+    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
+    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000
+```
