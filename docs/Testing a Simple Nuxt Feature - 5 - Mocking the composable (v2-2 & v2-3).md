@@ -227,7 +227,7 @@ graph TB
 
     J[📋 Specification v3]
     K((v3))
-w
+
     %% Connections
     A --> B
     B --> | Refactor: add data-testid | C
