@@ -16,7 +16,7 @@ describe('useVersion', () => {
   it('should return the correct initial state', () => {
     const { version, isVisible } = useVersion()
     expect(version).toBe(pkg.version) // pkg.version = "0.0.2"
-    expect(isVisible.value).toBe(false)        
+    expect(isVisible.value).toBe(false)
   })
 })
 ```
@@ -35,7 +35,7 @@ Let's focus on the second issue. We have two options:
 
 Option 2 might seem heavy-handed and could indicate an area for improvement. However, if the logic is shared across multiple components, placing `onMounted` inside the composable may be acceptable. Still, because it complicates testing, it might be better to move `onMounted` outside the composable when possible.
 
-To explore testing a composable that uses `onMounted`, we can use a helper function called `withSetup`, inspired by [Alexander Opalic](https://alexop.dev/). This function creates a Vue app with a setup context to handle lifecycle methods and expose the composable.
+To explore testing a composable that uses `onMounted`, we can use a helper function called `withSetup`, taken from [Alexander Opalic](https://alexop.dev/). This function creates a Vue app with a setup context to handle lifecycle methods and expose the composable.
 
 ## Testing with withSetup (v4-2)
 
@@ -67,7 +67,7 @@ describe('useVersion', () => {
   it('should return the correct initial state', () => {
     const [result] = withSetup(() => useVersion())
     expect(result.version).toBe(pkg.version) // Expected "0.0.2"
-    expect(result.isVisible.value).toBe(false) 
+    expect(result.isVisible.value).toBe(false)
   })
 })
 ```
@@ -133,22 +133,22 @@ describe('useVersion', () => {
   // so we cannot verify the state before onMounted executes.
   it.skip('should return the correct initial state with withSetup', () => {
     const [result] = withSetup(() => useVersion())
-    expect(result.version).toBe(pkg.version) 
-    expect(result.isVisible.value).toBe(false) 
+    expect(result.version).toBe(pkg.version)
+    expect(result.isVisible.value).toBe(false)
   })
 
   describe('should show the banner', () => {
     it('when the version is not stored', () => {
       localStorage.removeItem('app-version')
       const [result] = withSetup(() => useVersion())
-      expect(result.isVisible.value).toBe(true) 
+      expect(result.isVisible.value).toBe(true)
     })
 
     // The localStorage value '0.0.1' differs from the app version '0.0.2'
     it('when the version differs from localStorage', () => {
       localStorage.setItem('app-version', '0.0.1')
-      const [result] = withSetup(() => useVersion()) 
-      expect(result.isVisible.value).toBe(true) 
+      const [result] = withSetup(() => useVersion())
+      expect(result.isVisible.value).toBe(true)
     })
   })
 
@@ -156,8 +156,8 @@ describe('useVersion', () => {
     // When localStorage equals the app version '0.0.2'
     it('when the same version is stored', () => {
       localStorage.setItem('app-version', '0.0.2')
-      const [result] = withSetup(() => useVersion()) 
-      expect(result.isVisible.value).toBe(false) 
+      const [result] = withSetup(() => useVersion())
+      expect(result.isVisible.value).toBe(false)
     })
 
     // On closing the banner, the app version should be stored in localStorage
@@ -165,8 +165,8 @@ describe('useVersion', () => {
       localStorage.setItem('app-version', '0.0.1')
       const [result] = withSetup(() => useVersion())
       result.close()
-      expect(result.isVisible.value).toBe(false) 
-      expect(localStorage.getItem('app-version')).toBe('0.0.2')  
+      expect(result.isVisible.value).toBe(false)
+      expect(localStorage.getItem('app-version')).toBe('0.0.2')
     })
   })
 })

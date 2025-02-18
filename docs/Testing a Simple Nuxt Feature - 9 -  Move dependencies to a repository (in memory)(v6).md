@@ -41,7 +41,7 @@ export const useVersion = (repository: IVersionRepository) => {
   const isVisible = ref(false)
   // You might want to check if version is undefined and handle it as an error.
   const version = repository.getCurrentVersion()
-  
+
   const close = () => {
     isVisible.value = false
     if (version) {
@@ -54,7 +54,7 @@ export const useVersion = (repository: IVersionRepository) => {
       isVisible.value = true
     }
   }
-  
+
   return {
     close,
     version,
@@ -167,7 +167,7 @@ describe('useVersion', () => {
 })
 ```
 
-_Observation:_  
+_Observation:_
 The tests are now straightforward. They focus on the behavior of the composable rather than its underlying implementation.
 
 ## Dealing with Real Dependencies
@@ -230,7 +230,7 @@ Implement the real repository that uses Nuxt’s runtime configuration and local
 // File: layers/version-06/repositories/version-repository.ts
 export const createLocalStorageVersionRepository = (): IVersionRepository => {
   const VERSION_KEY = 'app-version'
-  
+
   const getCurrentVersion = () => {
     const version = useRuntimeConfig().public.version
     if (!version) {
