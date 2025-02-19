@@ -180,3 +180,44 @@ There are a few ways to improve this test further:
 - **Mock Dependencies:** By mocking `useRuntimeConfig` and `localStorage`, you can transform this integration test into a unit test.
 
 Improving this test by converting it into a unit test would be a valuable enhancement.
+
+## Decision Map
+```mermaid
+graph TB
+
+    %% Start
+    A((🏁 Start v4.1)):::start
+
+    %% Specification v4 Checklist
+    B[📋 Specification v4.1]:::start
+
+    %% Development Process
+    C["👨‍💻 Composable useVersion.ts"]
+
+    %% Test
+    D{{"🧪 Automated Test"}}
+    E[⚠️ onMounted Warning]:::issue
+    F{{"🧪 Automated Test (v4.2 & v4.3)"}}
+    G[⚠️ Not a Unit Test]:::issue
+
+
+    H{Is Testing Sufficient?}:::decision
+    I((👋 Exit)):::exit
+    J["🎯 Move 'onMounted' to the Parent"]:::action
+    K["🎯 Mock Dependencies"]:::action
+    L((v5))
+
+    %% Connections
+    A --> B --> C --> D
+    D --- E --- | Refactor: withSetup| F --- G --- H
+    H --> |No| J & K --- L
+    H --> |Yes| I
+
+    %% Define Styles
+    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
+    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
+    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
+    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
+    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
+    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000;
+```
