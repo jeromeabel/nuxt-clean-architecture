@@ -5,6 +5,7 @@ export default defineVitestConfig({
     include: [
       '**/__tests__/unit/**/*.{test,spec}.ts',
       '**/__tests__/**/*.unit.{test,spec}.ts',
+      '**/__tests__/integration/**/*.{test,spec}.ts',
     ],
     name: 'unit',
     environment: 'node',

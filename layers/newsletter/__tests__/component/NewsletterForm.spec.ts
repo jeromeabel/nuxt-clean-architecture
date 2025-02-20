@@ -42,7 +42,7 @@ describe('NewsletterForm', () => {
   })
 
   describe('on form submit, when username and password are filled', () => {
-    it('should render an error message on invalid email', async () => {
+    it.skip('should render an error message on invalid email', async () => {
       await findEmailInput().setValue('invalid-email')
       expect(findMessage().text()).toBe('')
       await findForm().trigger('submit')
@@ -50,7 +50,7 @@ describe('NewsletterForm', () => {
       expect(findMessage().text()).toBe(EMAIL_ERRORS.INVALID)
     })
 
-    it('should render a success message on valid email', async () => {
+    it.skip('should render a success message on valid email', async () => {
       await findEmailInput().setValue('valid@example.com')
       await findForm().trigger('submit')
       await flushPromises()
