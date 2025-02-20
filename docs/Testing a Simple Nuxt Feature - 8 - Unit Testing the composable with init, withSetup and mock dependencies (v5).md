@@ -250,41 +250,44 @@ What do you think?
 ```mermaid
 graph TB
 
-    %% Start
-    A((🏁 Start v5.1)):::start
+  %% Start
+  A((🏁 Start v5.1)):::start
 
-    %% Specification v5 Checklist
-    B[📋 Specification v5.1]:::start
+  %% Specification v5 Checklist
+  B[📋 Specification v5.1]:::checklist
 
-    %% Development Process
-    C["👨‍💻 Component VersionBanner05.vue"]
+  %% Development Process
+  C(["👨‍💻 <b>Component</b>:<br>VersionBanner05.vue"]):::impl
+  D(["👨‍💻 <b>Composable</b>:<br>useVersion.ts"]):::impl
 
-    %% Test
-    D[👨‍💻 Composable useVersion.ts]
-    E{{"🧪 Automated Test (v5.1)"}}
-    F["✅ Simplified Test"]
-    G[⚠️ Still Not a Unit Test]:::issue
+  %% Test
+  E{{"🧪 Automated Test (v5.1)"}}:::test
+  F(["✅ Simplified Test"]):::success
+  G[/⚠️ Still Not a Unit Test/]:::issue
 
-    H{{"🧪 Automated Test (v5.2)"}}
-    H1["✅ Unit Test"]
+  H{{"🧪 Automated Test (v5.2)"}}:::test
+  H1(["✅ Unit Test"]):::success
 
-    I{Confident Enough?}:::decision
-    J((👋 Exit)):::exit
-    K["⚠️ Test Too Complex"]:::issue
-    L["🎯 Black Box Testing: Avoid Mocks & Move Dependencies With The Repository Pattern"]:::action
-    M((v6))
+  I{Confident<br>Enough?}:::decision
+  J((👋 Exit)):::exit
+  K[/"⚠️ Test Too Complex"/]:::issue
+  L["🎯 Black Box Testing: Avoid Mocks & Move Dependencies With The Repository Pattern"]:::checklist
+  M((v6)):::start
 
-    %% Connections
-    A --> B --> |"Refactor: Move onMounted, add init()"| C & D
-    D --> |Refactor: Mock useRuntimeConfig| E --- F --- G
-    G --- |Refactor: Mock localStorage| H --- H1 --- I
-    I --> |No| K --- |★ Guided By SRP & DIP| L --- M
-    I --> |Yes| J
+  %% Connections
+  A --> B --> |"Refactor: Move onMounted, add init()"| C & D
+  D --> |Refactor: Mock useRuntimeConfig| E --- F --- G
+  G --- |Refactor: Mock localStorage| H --- H1 --- I
+  I --> |No| K --- |★ Guided By SRP & DIP| L --- M
+  I --> |Yes| J
 
-    %% Define Styles
-    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
-    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
-    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
-    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
-    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
+  %% Define Styles
+  classDef start fill:#fff,color:#000,stroke:#000,stroke-width:2;
+  classDef impl fill:#000,color:#fff,stroke:#fff,stroke-width:0;
+  classDef issue fill:#f48c06,color:#000,stroke:#333,stroke-width:0;
+  classDef decision fill:#FEE420,color:#000,stroke:#4F4400,stroke-width:0;
+  classDef test fill:#264653,color:#fff,stroke:#060600,stroke-width:0;
+  classDef exit fill:#ff0044,color:#fff,stroke-width:0;
+  classDef checklist fill:#E1F5FE,stroke:#000000,color:#000000;
+  classDef success fill:#4CAF50,color:#fff,stroke:#fff,stroke-width:0;
 ```

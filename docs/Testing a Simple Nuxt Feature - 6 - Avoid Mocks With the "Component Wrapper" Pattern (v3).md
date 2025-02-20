@@ -144,37 +144,38 @@ graph TB
     A((🏁 Start v3)):::start
 
     %% Specification v3 Checklist
-    B[📋 Specification v3]:::start
+    B[📋 Specification v3]:::checklist
 
     %% Development Process
-    C1["👨‍💻 Wrapper Component: VersionBanner03.vue"]
-    C2["👨‍💻 Child Component: VersionBannerUI.vue"]
+    C1(["👨‍💻 <b>Wrapper Component</b>:<br>VersionBanner03.vue"]):::impl
+    C2(["👨‍💻 <b>Child Component</b>:<br>VersionBannerUI.vue"]):::impl
 
     %% Test
-    D{{🧪 Automated Test}}
+    D{{🧪 Automated Test}}:::test
 
-    E[✅ Specification Validated]
-    F[🎉 100% Confidence! 🎉]
+    F([✅ Enough Confidence!]):::success
 
-    G{Is Testing Sufficient?}:::decision
+    G{Is Testing<br>Sufficient?}:::decision
     H((👋 Exit)):::exit
-    I[🎯 The composable should be tested]:::action
-    J((v4))
+    I[🎯 The composable should be tested]:::checklist
+    J((v4)):::start
 
     %% Connections
     A --> B
-    B --> | Refactor: Extract Components | C1 & C2
+    B --> | Refactor: Extract Component | C1 & C2
     C2 --> | Refactor: Remove Mocks | D
-    D --- E --- F --- G
+    D --- F --- G
     G --- |Yes| H
     G --- |No| I
     I --- J
 
     %% Define Styles
-    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
-    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
-    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
-    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
-    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
-    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000;
+    classDef start fill:#fff,color:#000,stroke:#000,stroke-width:2;
+    classDef impl fill:#000,color:#fff,stroke:#fff,stroke-width:0;
+    classDef issue fill:#f48c06,color:#000,stroke:#333,stroke-width:0;
+    classDef decision fill:#FEE420,color:#000,stroke:#4F4400,stroke-width:0;
+    classDef test fill:#264653,color:#fff,stroke:#060600,stroke-width:0;
+    classDef exit fill:#ff0044,color:#fff,stroke-width:0;
+    classDef checklist fill:#E1F5FE,stroke:#000000,color:#000000;
+    classDef success fill:#4CAF50,color:#fff,stroke:#fff,stroke-width:0;
 ```

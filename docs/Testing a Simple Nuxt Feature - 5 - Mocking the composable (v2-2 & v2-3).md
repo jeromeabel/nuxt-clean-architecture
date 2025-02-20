@@ -209,24 +209,24 @@ graph TB
     A((🏁 Start v2.2)):::start
 
     %% Specification v2 Checklist
-    B[📋 Specification v2.2]:::start
+    B[📋 Specification v2.2]:::checklist
 
     %% Development Process
-    C["👨‍💻 Component: VersionBanner02.vue"]
+    C(["👨‍💻 <b>Component</b>:<br>VersionBanner02.vue"]):::impl
 
         %% Test
-    D{{🧪 Automated Test}}
+    D{{🧪 Automated Test}}:::test
 
-    E[✅ Isolated Unit Test]
+    E([✅ Isolated Unit Test]):::success
     F{Confident Enough?}:::decision
     G((👋 Exit)):::exit
 
     %% Issues
-    H[⚠️ The component is tightly coupled to the composable]:::issue
-    I[🎯 The component should expose only props and events]:::action
+    H[/⚠️ The component is tightly coupled to the composable/]:::issue
+    I[🎯 The component should expose only props and events]:::checklist
 
-    J[📋 Specification v3]
-    K((v3))
+    J[📋 Specification v3]:::checklist
+    K((v3)):::start
 
     %% Connections
     A --> B
@@ -241,10 +241,12 @@ graph TB
     I --- J --- K
 
     %% Define Styles %%
-    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
-    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
-    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
-    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
-    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
-    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000
+    classDef start fill:#fff,color:#000,stroke:#000,stroke-width:2;
+    classDef impl fill:#000,color:#fff,stroke:#fff,stroke-width:0;
+    classDef issue fill:#f48c06,color:#000,stroke:#333,stroke-width:0;
+    classDef decision fill:#FEE420,color:#000,stroke:#4F4400,stroke-width:0;
+    classDef test fill:#264653,color:#fff,stroke:#060600,stroke-width:0;
+    classDef exit fill:#ff0044,color:#fff,stroke-width:0;
+    classDef checklist fill:#E1F5FE,stroke:#000000,color:#000000;
+    classDef success fill:#4CAF50,color:#fff,stroke:#fff,stroke-width:0;
 ```

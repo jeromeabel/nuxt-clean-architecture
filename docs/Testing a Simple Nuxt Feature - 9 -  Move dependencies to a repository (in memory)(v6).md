@@ -308,36 +308,42 @@ If you want to continue, you could try to fullfill these two missing specificati
 ```mermaid
 graph TB
 
-    %% Start
-    A((🏁 Start v6)):::start
+  %% Start
+  A((🏁 Start v6)):::start
 
-    %% Specification v6 Checklist
-    B[📋 Specification v6]:::start
+  %% Specification v6 Checklist
+  B[📋 Specification v6]:::checklist
 
-    %% Development Process
-    C["👨‍💻 Interface: IVersionRepository"]
-    D["👨‍💻 Composable: useVersion.ts"]
-    E["✅ Implementation Details Removed"]
-    F["👨‍💻 In Memory Repository"]
-    F1["👨‍💻 Implementation Repository"]
-    F2["👨‍💻 Wrapper Component"]
+  %% Development Process
+  C(["👨‍💻 <b>Interface</b>:<br>IVersionRepository"]):::impl
+  D(["👨‍💻 <b>Composable</b>:<br> useVersion.ts"]):::impl
+  E(["✅ Implementation Details Removed"]):::success
+  F(["👨‍💻 <b>Repository</b>:<br>In Memory"]):::impl
+  F1(["👨‍💻 <b>Repository</b>:<br>Implementation"]):::impl
+  F2(["👨‍💻 Wrapper Component"]):::impl
 
-    %% Test
-    G{{"🧪 Automated Test: <br>In Memory Repository"}}
-    H{{"🧪 Automated Test: <br>Composable"}}
-    I{{"🧪 Visual Test"}}
+  %% Test
+  G{{"🧪 Automated Test: <br>In Memory Repository"}}:::test
+  H{{"🧪 Automated Test: <br>Composable"}}:::test
+  I{{"🧪 Visual Test"}}:::test
 
-    J(("🎉 Succeed! 🎉")):::succeed
+  J(("🎉 Succeed! 🎉")):::success
 
-    %% Connections
-    A --> B --> C
-    B --> |"Refactor: Replace dependencies with the interface (DIP)"| D
-    D --> E --> F --> G
-    E --> F1
-    E --> |Refactor: Use Implementation Repository | F2 --> I
-    F --> |Refactor: Test with the in memory repository| H --> J
+  %% Connections
+  A --> B --> C
+  B --> |"Refactor: Replace dependencies with the interface (DIP)"| D
+  D --> E --> F --> G
+  E --> F1
+  E --> |Refactor: Use Implementation Repository | F2 --> I
+  F --> |Refactor: Test with the in memory repository| H --> J
 
-    %% Define Styles
-    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
-    classDef succeed fill:#FFFFFF,stroke:#2E7D32,color:#2E7D32
+  %% Define Styles
+  classDef start fill:#fff,color:#000,stroke:#000,stroke-width:2;
+  classDef impl fill:#000,color:#fff,stroke:#fff,stroke-width:0;
+  classDef issue fill:#f48c06,color:#000,stroke:#333,stroke-width:0;
+  classDef decision fill:#FEE420,color:#000,stroke:#4F4400,stroke-width:0;
+  classDef test fill:#264653,color:#fff,stroke:#060600,stroke-width:0;
+  classDef exit fill:#ff0044,color:#fff,stroke-width:0;
+  classDef checklist fill:#E1F5FE,stroke:#000000,color:#000000;
+  classDef success fill:#4CAF50,color:#fff,stroke:#fff,stroke-width:0;
 ```

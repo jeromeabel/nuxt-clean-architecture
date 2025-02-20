@@ -59,28 +59,27 @@ What are your thoughts on this implementation? Does this structure seem sufficie
 graph TB;
 
     %% Start %%
-    A((🏁 Start Feature:<br> <b>Version Banner</b>))
+    A((🏁 Start Feature:<br> <b>Version Banner</b>)):::start
 
     %% Spec v1 Checklist %%
-    B[📋 Specification v1]
+    B[📋 Specification v1]:::checklist
 
     %% Development Process %%
-    C[👨‍💻 All-In-One Component]
-    D{{🧪👁️ Visual Testing}}
-    E{Confidence Enough?}
-    F((👋 Exit))
+    C([👨‍💻 All-In-One Component]):::impl
+    D{{🧪👁️ Visual Tests}}:::test
+    E{Confidence Enough?}:::decision
+    F((👋 Exit)):::exit
 
     %% Issues %%
-    G[⚠️ Difficult to Test]
-    G1[⚠️ <b>Type Assumptions</b>]
-    G2[⚠️ <b>Too Many Concerns</b>:<br>UI, State, Lifecycle, Dependencies]
+    G[/⚠️ Difficult to Test/]:::issue
+    G1[/⚠️ <b>Type Assumptions</b>/]:::issue
+    G2[/⚠️ <b>Too Many Concerns</b>:<br>UI, State, Lifecycle, Dependencies/]:::issue
 
     %% Spec v2 Checklist %%
-    H1["🎯 Version Handling ➜ Entity & Validation"]
-    H2["🎯 Component ➜ UI Only"]
-    I[📋 Specification v2.1]
-
-    J((v2.1))
+    H1["🎯 Version Handling ➜ Entity & Validation"]:::checklist
+    H2["🎯 Component ➜ UI Only"]:::checklist
+    I[📋 Specification v2.1]:::checklist
+    J((v2.1)):::start
 
     %% Connections %%
     A --> |"★ Guided By YAGNI"| B
@@ -99,16 +98,11 @@ graph TB;
     I --> J
 
     %% Define Styles %%
-    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
-    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
-    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
-    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
-    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
-    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000;
-
-    class A start;
-    class F exit;
-    class E decision;
-    class G,G1,G2 issue;
-    class H1,H2 action;
+    classDef start fill:#fff,color:#000,stroke:#000,stroke-width:2;
+    classDef impl fill:#000,color:#fff,stroke:#fff,stroke-width:0;
+    classDef issue fill:#f48c06,color:#000,stroke:#333,stroke-width:0;
+    classDef decision fill:#FEE420,color:#000,stroke:#4F4400,stroke-width:0;
+    classDef test fill:#264653,color:#fff,stroke:#060600,stroke-width:0;
+    classDef exit fill:#ff0044,color:#fff,stroke-width:0;
+    classDef checklist fill:#E1F5FE,stroke:#000000,color:#000000;
 ```

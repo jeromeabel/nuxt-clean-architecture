@@ -183,33 +183,32 @@ graph TB
     A((🏁 Start v2.1>)):::start
 
     %% Spec v2 Checklist
-    B[📋 Specification v2.1]:::start
+    B[📋 Specification v2.1]:::checklist
 
     %% Development Process
-    C2["👨‍💻 Component (Humble)"]
-    C1["👨‍💻 Composable (Presenter)"]
+    C2(["👨‍💻 Component (Humble)"]):::impl
+    C1(["👨‍💻 Composable (Presenter)"]):::impl
 
-    D{{🧪👁️ Visual Test}}
-    E{Confidence Enough?}:::decision
+    D{{🧪👁️ Visual Test}}:::test
+    E{Confidence <br>Enough?}:::decision
     F((👋 Exit)):::exit
 
     %% Test
-    G{{🧪 Automated Test}}
+    G{{🧪 Automated Test}}:::test
 
     %% Issues
-    H[⚠️ Integration Test]:::issue
-    I{Confidence Enough?}:::decision
+    H[/⚠️ Integration Test/]:::issue
+    I{Confidence <br>Enough?}:::decision
+    J[/⚠️ Issues/]:::issue
+    K1[/"⚠️ <b>Dependencies:</b><br>useRuntimeConfig & localStorage"/]:::issue
+    K2[/"⚠️ <b>Hardcoded:</b><br>'app-version'"/]:::issue
+    K3[/"⚠️ <b>Lifecycle:</b><br>onMounted"/]:::issue
 
-    J[⚠️ Issues]:::issue
-    K1["⚠️ <b>Dependencies:</b><br>useRuntimeConfig & localStorage"]:::issue
-    K2["⚠️ <b>Hardcoded:</b> 'app-version'"]:::issue
-    K3["⚠️ <b>Lifecycle:</b> onMounted"]:::issue
+    L1[🎯 Mock the comosable]:::checklist
+    L2[🎯 Test the composable]:::checklist
+    L3[🎯 Move onMounted]:::checklist
 
-    L1[🎯 Mock the comosable]:::action
-    L2[🎯 Test the composable]:::action
-    L3[🎯 Move onMounted]:::action
-
-    M[📋 Specification v2.2]
+    M[📋 Specification v2.2]:::checklist
     N((v2.2))
 
     %% Connections
@@ -233,10 +232,11 @@ graph TB
     M --- N
 
     %% Define Styles %%
-    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
-    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
-    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
-    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
-    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
-    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000
+    classDef start fill:#fff,color:#000,stroke:#000,stroke-width:2;
+    classDef impl fill:#000,color:#fff,stroke:#fff,stroke-width:0;
+    classDef issue fill:#f48c06,color:#000,stroke:#333,stroke-width:0;
+    classDef decision fill:#FEE420,color:#000,stroke:#4F4400,stroke-width:0;
+    classDef test fill:#264653,color:#fff,stroke:#060600,stroke-width:0;
+    classDef exit fill:#ff0044,color:#fff,stroke-width:0;
+    classDef checklist fill:#E1F5FE,stroke:#000000,color:#000000;
 ```
