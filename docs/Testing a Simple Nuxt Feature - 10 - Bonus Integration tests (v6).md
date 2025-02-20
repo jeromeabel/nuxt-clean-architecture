@@ -1,17 +1,6 @@
----
-modified: 2025-02-14, 23:30
-tags:
-  - types/resource
-created: 2025-02-14
-up: "[[Testing a Simple Nuxt Feature]]"
-related: 
-author: 
-link: 
-topic: 
-status: 
-duration: 
-media: 
----
+# Part 10/10: Add Integration Tests
+
+## Test the Composable With "createLocalStorageVersionRepository"
 
 ```ts
 // @vitest-environment nuxt

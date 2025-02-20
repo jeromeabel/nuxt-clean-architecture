@@ -14,7 +14,7 @@ export const useVersion = () => {
       isVisible.value = true
     }
   }
-  
+
   return {
     // ...
     init
@@ -29,7 +29,7 @@ it('when version differs from localStorage', async () => {
   localStorage.setItem('app-version', '0.0.1')
   const [result] = withSetup(() => useVersion())
   result.init()
-  expect(result.isVisible.value).toBe(true) 
+  expect(result.isVisible.value).toBe(true)
 })
 ```
 
@@ -43,13 +43,11 @@ Code: [VersionBanner05.vue](https://github.com/jeromeabel/nuxt-clean-architectur
 <script lang="ts" setup>
 import { useVersion } from '../composables/useVersion'
 const { isVisible, version, init, close } = useVersion()
-onMounted(() => { 
-  init() 
+onMounted(() => {
+  init()
 })
 </script>
 ```
-
----
 
 ## Mocking useRuntimeConfig (v5-1)
 
@@ -84,22 +82,22 @@ describe('useVersion', () => {
 
   it('should return the correct initial state', () => {
     const { version, isVisible } = useVersion()
-    expect(version).toBe(CURRENT_VERSION) 
-    expect(isVisible.value).toBe(false) 
+    expect(version).toBe(CURRENT_VERSION)
+    expect(isVisible.value).toBe(false)
   })
 
   describe('should show the banner', () => {
     it('when no version is stored', () => {
       const { init, isVisible } = useVersion()
       init()
-      expect(isVisible.value).toBe(true) 
+      expect(isVisible.value).toBe(true)
     })
 
     it('when the version in localStorage differs', async () => {
       localStorage.setItem(VERSION_KEY, STORED_VERSION)
       const { init, isVisible } = useVersion()
       init()
-      expect(isVisible.value).toBe(true) 
+      expect(isVisible.value).toBe(true)
     })
   })
 
@@ -108,7 +106,7 @@ describe('useVersion', () => {
       localStorage.setItem(VERSION_KEY, CURRENT_VERSION)
       const { init, isVisible } = useVersion()
       init()
-      expect(isVisible.value).toBe(false) 
+      expect(isVisible.value).toBe(false)
     })
 
     it('and update localStorage on closeBanner', () => {
@@ -116,7 +114,7 @@ describe('useVersion', () => {
       init()
       close()
       expect(isVisible.value).toBe(false)
-      expect(localStorage.getItem(VERSION_KEY)).toBe(CURRENT_VERSION)  
+      expect(localStorage.getItem(VERSION_KEY)).toBe(CURRENT_VERSION)
     })
   })
 })
@@ -131,8 +129,6 @@ describe('useVersion', () => {
 - **Clean LocalStorage:** We clear localStorage before each test.
 
 _Note:_ This is still an integration test because it relies on localStorage.
-
----
 
 ## Mocking localStorage (v5-2)
 
@@ -235,8 +231,6 @@ _Note:_ We encountered an error when mocking the Nuxt import:
 
 This error suggests that multiple mocks may conflict. We need to adjust our approach to mock `#app/nuxt` so that it works together with our localStorage mock.
 
----
-
 ## What's Wrong?
 
 The final result is a true unit test, where we test the composable in isolation. However, there are some concerns:
@@ -245,10 +239,52 @@ The final result is a true unit test, where we test the composable in isolation.
 - **Test Heaviness:** The test setup is much heavier than the code it tests.
 - **Maintenance:** The test might become more difficult to maintain than the composable itself.
 
----
-
 ## Next Step
 
 We consistently face the same issue: Is it the composable's responsibility to import dependencies like localStorage and runtimeConfig? Would it be better to add another layer of encapsulation by injecting these dependencies as parameters? That way, the composable focuses solely on business logic, and our tests become simpler and more focused.
 
 What do you think?
+
+## Decision Map
+
+```mermaid
+graph TB
+
+    %% Start
+    A((🏁 Start v5.1)):::start
+
+    %% Specification v5 Checklist
+    B[📋 Specification v5.1]:::start
+
+    %% Development Process
+    C["👨‍💻 Component VersionBanner05.vue"]
+
+    %% Test
+    D[👨‍💻 Composable useVersion.ts]
+    E{{"🧪 Automated Test (v5.1)"}}
+    F["✅ Simplified Test"]
+    G[⚠️ Still Not a Unit Test]:::issue
+
+    H{{"🧪 Automated Test (v5.2)"}}
+    H1["✅ Unit Test"]
+
+    I{Confident Enough?}:::decision
+    J((👋 Exit)):::exit
+    K["⚠️ Test Too Complex"]:::issue
+    L["🎯 Black Box Testing: Avoid Mocks & Move Dependencies With The Repository Pattern"]:::action
+    M((v6))
+
+    %% Connections
+    A --> B --> |"Refactor: Move onMounted, add init()"| C & D
+    D --> |Refactor: Mock useRuntimeConfig| E --- F --- G
+    G --- |Refactor: Mock localStorage| H --- H1 --- I
+    I --> |No| K --- |★ Guided By SRP & DIP| L --- M
+    I --> |Yes| J
+
+    %% Define Styles
+    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
+    classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
+    classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
+    classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
+    classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
+```

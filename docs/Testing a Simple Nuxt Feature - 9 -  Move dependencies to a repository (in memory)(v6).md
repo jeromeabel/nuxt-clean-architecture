@@ -4,7 +4,7 @@
 
 Instead of directly using external dependencies, we can define an API (or interface) that describes what we need. This lets us focus on business logic inside the composable while handling I/O externally.
 
-## Repository Interface
+### Repository Interface
 
 Define an interface that abstracts the operations we need. Rather than directly using `useRuntimeConfig().public.version` and localStorage methods, we create an interface with a domain-friendly API:
 
@@ -25,9 +25,7 @@ export interface IVersionRepository {
 }
 ```
 
----
-
-## Refactor the Composable with the Interface
+### Refactor the Composable with the Interface
 
 Code: [useVersion.ts](https://github.com/jeromeabel/nuxt-clean-architecture/blob/feat/version-banner/layers/version-06/composables/useVersion.ts)
 
@@ -298,3 +296,42 @@ We have:
 - Simplified tests by focusing on business logic rather than implementation details.
 
 This approach also promotes better decoupling (SRP) and makes our code more maintainable.
+
+## Decision Map
+```mermaid
+graph TB
+
+    %% Start
+    A((🏁 Start v6)):::start
+
+    %% Specification v6 Checklist
+    B[📋 Specification v6]:::start
+
+    %% Development Process
+    C["👨‍💻 Interface: IVersionRepository"]
+    D["👨‍💻 Composable: useVersion.ts"]
+    E["✅ Implementation Details Removed"]
+    F["👨‍💻 In Memory Repository"]
+    F1["👨‍💻 Implementation Repository"]
+    F2["👨‍💻 Wrapper Component"]
+
+    %% Test
+    G{{"🧪 Automated Test: <br>In Memory Repository"}}
+    H{{"🧪 Automated Test: <br>Composable"}}
+    I{{"🧪 Visual Test"}}
+
+    J(("🎉 Succeed! 🎉")):::succeed
+
+
+    %% Connections
+    A --> B --> C
+    B --> |"Refactor: Replace dependencies with the interface (DIP)"| D
+    D --> E --> F --> G
+    E --> F1
+    E --> |Refactor: Use Implementation Repository | F2 --> I
+    F --> |Refactor: Test with the in memory repository| H --> J
+
+    %% Define Styles
+    classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
+    classDef succeed fill:#FFFFFF,stroke:#2E7D32,color:#2E7D32
+```

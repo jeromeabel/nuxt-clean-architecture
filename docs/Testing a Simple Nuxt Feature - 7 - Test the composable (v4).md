@@ -203,8 +203,8 @@ graph TB
 
     H{Is Testing Sufficient?}:::decision
     I((👋 Exit)):::exit
-    J["🎯 Move 'onMounted' to the Parent"]:::action
-    K["🎯 Mock Dependencies"]:::action
+    J["🎯 Move 'onMounted' to the Parent Component"]:::action
+    K["🎯 Mock Dependencies to Have a Unit Test"]:::action
     L((v5))
 
     %% Connections
