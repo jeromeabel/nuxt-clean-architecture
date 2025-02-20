@@ -297,6 +297,13 @@ We have:
 
 This approach also promotes better decoupling (SRP) and makes our code more maintainable.
 
+## Next
+
+If you want to continue, you could try to fullfill these two missing specifications:
+- (v1) The application’s version is defined in `package.json`.
+- (v2.1) The version should be wrapped in an Entity
+- Complete testing suite with integration tests
+
 ## Decision Map
 ```mermaid
 graph TB
@@ -321,7 +328,6 @@ graph TB
     I{{"🧪 Visual Test"}}
 
     J(("🎉 Succeed! 🎉")):::succeed
-
 
     %% Connections
     A --> B --> C

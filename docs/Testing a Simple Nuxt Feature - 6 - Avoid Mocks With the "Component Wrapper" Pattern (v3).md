@@ -170,11 +170,11 @@ graph TB
     G --- |No| I
     I --- J
 
-    %% Define Styles %%
+    %% Define Styles
     classDef start fill:#4CAF50,stroke:#2E7D32,color:#FFFFFF;
     classDef exit fill:#D32F2F,stroke:#B71C1C,color:#FFFFFF;
     classDef decision fill:#FBC02D,stroke:#F9A825,color:#000000;
     classDef issue fill:#FF7043,stroke:#BF360C,color:#FFFFFF;
     classDef action fill:#42A5F5,stroke:#1E88E5,color:#FFFFFF;
-    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000
+    classDef checklist fill:#E1F5FE,stroke:#0277BD,color:#000000;
 ```
