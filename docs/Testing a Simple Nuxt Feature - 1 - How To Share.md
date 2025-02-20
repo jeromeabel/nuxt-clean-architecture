@@ -110,7 +110,7 @@ graph TD;
     IMPL5A(["👨‍💻 <b>Composable</b> (v2)"]):::impl
     TEST5A{{🧪 Automated Test}}:::test
     TEST5B{{🧪 Automated Test}}:::test
-    SUCCESS2((✅ one!)):::success
+    SUCCESS2((✅ Done!)):::success
 
     %% Connections v4
     TEST4A ---|1| ISSUE4B
